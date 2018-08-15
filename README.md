@@ -158,6 +158,9 @@ sudo pip install oauth2client
 sudo pip install requests
 sudo pip install httplib2
 sudo pip install flask-seasurf
+sudo pip install flask-httpauth
+sudo pip install flask-sqlalchemy
+sudo pip install bleach
 ```
 
 An alternative to installing system-wide python modules is to create a virtual
@@ -188,7 +191,7 @@ sudo -u www-data git clone https://github.com/Oba-One/Item-Catalog.git udacity-p
 Fill in the `client_id` and `client_secret` fields in the file `g_client_secrets.json`.
 Also change the `javascript_origins` field to the IP address and AWS assigned URL of the host.
 In this instance that would be:
-`"javascript_origins":["http://52.11.206.40", "http://ec2-52-11-206-40.us-west-2.compute.amazonaws.com"]`
+`"javascript_origins":["http://52.11.130.21", "http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com"]`
 
 These addresses also need to be entered into the Google Developers Console -> API Manager
 -> Credentials, in the web client under "Authorized JavaScript origins".
@@ -199,9 +202,9 @@ In the file `fb_client_secrets.json`, fill in the `app_id` and `app_secret` fiel
 the correct values.
 
 In the Facebook developers website, on the Settings page, the website URL needs to read
-`http://ec2-52-11-206-40.us-west-2.compute.amazonaws.com`. Then in the "Advanced" tab,
-in the "Client OAuth Settings" section, add `http://ec2-52-11-206-40.us-west-2.compute.amazonaws.com`
-and `http://52.11.206.40` to the "Valid OAuth redirect URIs" field. Then save these changes.
+`http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com`. Then in the "Advanced" tab,
+in the "Client OAuth Settings" section, add `http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com`
+and `http://52.11.130.21` to the "Valid OAuth redirect URIs" field. Then save these changes.
 
 ### Configure Apache 2 
 1. Update catalog.wsgi file for this installation
@@ -294,8 +297,8 @@ To make these Apache2 configuration changes live, reload Apache:
 
 `sudo service apache reload`
 
-The catalog app should now be available at `http://52.11.206.40` and
-`http://ec2-52-11-206-40.us-west-2.compute.amazonaws.com`
+The catalog app should now be available at `http://52.11.130.21` and
+`http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com`
 
 [This][6] was a useful guide to setting up a Flask app on Apache, though the `Directory`
 permissions in the virtual host file were out of date (now it's `Require all granted`
