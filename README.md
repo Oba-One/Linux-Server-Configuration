@@ -13,7 +13,10 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 * URL: http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com/
 * SSH Port: 2200 
 
+***
 # Server Configuration
+
+#### Steps for configuration of Amazon Lightsail server using Ubuntu
 
 ## Connect To Server
 
