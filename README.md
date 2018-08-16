@@ -28,9 +28,10 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 * Set Password for the user with command: `sudo passwd grader`
 * Give Sudo Permissions to Grader: `sudo usermod -aG sudo grader`
 * Fix sudo resolve host error:
-        When the **grader** uses a sudo command, the following error appears `sudo: unable to resolve host ip-10-20-47-177`
 
-        To fix add the hostname to the loopback address in the ```/etc/hosts``` file so the first line reads `127.0.0.1 localhost ip-10-20-47-177`
+When the **grader** uses a sudo command, the following error appears `sudo: unable to resolve host ip-10-20-47-177`
+
+To fix add the hostname to the loopback address in the ```/etc/hosts``` file so the first line reads `127.0.0.1 localhost ip-10-20-47-177`
 
 ### Update Packages
 
@@ -52,11 +53,11 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 
 * Edit the sshd_config to not permit root login, password authentication and change the port to 2200: `sudo nano /etc/ssh/sshd_config`
 
-        File should chnage from:
+File should chnage from:
 
-        ```PermitRootLogin without-password``` to ```PermitRootLogin no```
-        ```PasswordAuthentication no``` to ```PasswordAuthentication no```
-        ```Port 22``` to ```Port 2200```
+```PermitRootLogin without-password``` to ```PermitRootLogin no```
+```PasswordAuthentication no``` to ```PasswordAuthentication no```
+```Port 22``` to ```Port 2200```
 
 * Restart the SSH service: `sudo service ssh restart`
 * Now when logging in via ssh attach -p 2200 to the end of the command `
@@ -87,16 +88,16 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 
 * Install postgresSQL with command: `sudo apt-get install postgresql postgresql-contrib`
 
-        - To ensure that remote connections to PostgreSQL are not allowed, check
-        that the configuration file `/etc/postgresql/9.5/main/pg_hba.conf` only
-        allowed connections from the local host addresses `127.0.0.1` for IPv4
-        and `::1` for IPv6.
+- To ensure that remote connections to PostgreSQL are not allowed, check
+that the configuration file `/etc/postgresql/9.5/main/pg_hba.conf` only
+allowed connections from the local host addresses `127.0.0.1` for IPv4
+and `::1` for IPv6.
 
-        - Version number may be different from **9.5**
+- Version number may be different from **9.5**
 
 * Create postgresSQL user named catalog: `sudo -u postgres createuser -P catalog`
 
-        - When prompted for a password use the name password.
+- When prompted for a password use the name password.
 
 * Create an empty database called catalog: `sudo -u postgres createuser -P catalog`
 
@@ -194,10 +195,12 @@ Here's what the file should contain:
 ```
 
 * Navigate to the /var/www/FlaskApp/catalog directory to view and edit the `catalog.wsgi file.`
-        - This file is use to connect your application to apache and allow it to be deployed.
+
+- This file is use to connect your application to apache and allow it to be deployed.
 
 * Use to command: `sudo nano catalog.wsgi` to view and edit the file. 
-        - It's already configured but if changes need to be made edit this file.
+
+- It's already configured but if changes need to be made edit this file.
 
 ```python
 #!/usr/bin/python
@@ -211,9 +214,9 @@ from __init__.py import app as application
 application.secret_key = 'super_secret_key'  # This needs changing in production env
 ```
 
-        - Absolute paths are updated to where the catalog is located. The application `secret_key` is set to
-        something random and the PostgreSQL for the `catalog` user is set. In this case, the file
-        looks like this, except the password and secret is not shown for security reasons.
+- Absolute paths are updated to where the catalog is located. The application `secret_key` is set to
+something random and the PostgreSQL for the `catalog` user is set. In this case, the file
+looks like this, except the password and secret is not shown for security reasons.
 
 * On order to now view the application Apache has to switch from serving the default conf file to the new one.
 * Disable the virtual default host: `sudo a2dissite 000-default.conf`
