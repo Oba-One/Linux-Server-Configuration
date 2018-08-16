@@ -12,15 +12,15 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 * URL: http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com/
 * SSH Port: 2200 
 
-## Server Configuration
+# Server Configuration
 
-### Connect To Server
+## Connect To Server
 
 1. Connect to server using SSH
 2. Use Udacity Key pem 
 3. Change the timezone
 
-### Add User Grader
+## Add User Grader
 1. Add user **grader** with command:
 
 sudo useradd -m -s /bin/bash grader
@@ -45,7 +45,7 @@ To fix add the hostname to the loopback address in the ```/etc/hosts``` file so 
 
 ```127.0.0.1 localhost ip-10-20-47-177```
 
-### Update Packages
+## Update Packages
 1. Run ```sudo apt-get update``` command to update package indexes
 2. Run ``` sudo apt-get upgrader``` command to upgrade and install packages
 
@@ -53,7 +53,7 @@ To fix add the hostname to the loopback address in the ```/etc/hosts``` file so 
 
 ```reboot```
 
-### Setup SSH Keys For Grader
+## Setup SSH Keys For Grader
 1. Make home directory for grader with hidden .ssh file 
 
 ```
@@ -92,7 +92,7 @@ chmod 644 /home/grader/.ssh/authorized_keys
 
 6. The grader can now login using via ssh
 
-### Change SSH port
+## Change SSH port
 1. Edit the sshd_config to not permit root login, password authentication and change the port to 2200.
 
 ```
@@ -115,7 +115,7 @@ sudo service ssh restart
 ```
 
 
-### Configure Firewall (UFW)
+## Configure Firewall (UFW)
 1. Block all incoming connections
 
 ```sudo ufw default deny incoming```
@@ -144,7 +144,7 @@ sudo service ssh restart
 
 ```sudo ufw enable ``` then ```sudo ufw status``
 
-### Install Apache 
+## Install Apache 
 1. Install Apache to serve Python application
 
 ```sudo apt-get install apache2```
@@ -153,7 +153,7 @@ sudo service ssh restart
 
 ```sudo apt-get install libapache2-mod-wsgi```
 
-### Install PostgreSQL
+## Install PostgreSQL
 1. Install postgresSQL with command:
 
 `sudo apt-get install postgresql postgresql-contrib`
@@ -173,7 +173,7 @@ When prompted for a password use the name grader.
 3. Create an empty database called catalog
 `sudo -u postgres createuser -P catalog`
 
-### Install Flask, SQLAlchemy, & Etc
+## Install Flask, SQLAlchemy, & Etc
 1. Run the following commands to install necessary packages:
 ```
 sudo apt-get install python-psycopg2 python-flask
@@ -190,7 +190,7 @@ sudo pip install bleach
 An alternative to installing system-wide python modules is to create a virtual
 environment for each application using the [virualenv][4] package.
 
-### Add Application From Github
+## Add Application From Github
 1. Install git
 `sudo apt-get install git`
 
@@ -209,7 +209,7 @@ sudo -u www-data git clone https://github.com/Oba-One/Item-Catalog.git udacity-p
 ```
 
 
-### Update OAuth
+## Update OAuth
 1. Update Google OAuth client secret and redirect.
 
 Fill in the `client_id` and `client_secret` fields in the file `g_client_secrets.json`.
@@ -230,7 +230,7 @@ In the Facebook developers website, on the Settings page, the website URL needs 
 in the "Client OAuth Settings" section, add `http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com`
 and `http://52.11.130.21` to the "Valid OAuth redirect URIs" field. Then save these changes.
 
-### Configure Apache 2 
+## Configure Apache 2 
 1. Update catalog.wsgi file for this installation
 
 Absolute paths are updated to where the catalog is located. The application `secret_key` is set to
