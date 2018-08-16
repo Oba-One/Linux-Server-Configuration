@@ -49,10 +49,10 @@ change the first line to reads `127.0.0.1 localhost ip-10-20-47-177`
 * Make home directory for grader with hidden .ssh file: `sudo mkdir /home/grader/.ssh`
 * Use chown command to change the owner of the home directory to the grader: `sudo chown grader:grader /home/grader/.ssh`
 * Use chmod to change to permisions for the grader in the home directory: `sudo chmod 700 /home/grader/.ssh`
-* Copy over the ssh key from the root directory to home/grader directory: `sudo cp /root/.ssh/authorized_keys /home/grader/.ssh/`
+* Copy over the ssh key from the ubuntu home directory to home/grader directory: `sudo cp /home/ubuntu/.ssh/authorized_keys /home/grader/.ssh/`
 * Change the owner to the grader: `sudo chown grader:grader /home/grader/.ssh/authorized_keys`
 * With the chmod command change permissions to grader : `sudo chmod 644 /home/grader/.ssh/authorized_keys`
-* The grader can now login using via ssh with command: 
+* The grader can now login using via ssh with command: `ssh -i ~/.ssh/udacity_key.rsa grader@52.11.130.21`  
 
 
 ### Change SSH Port
@@ -66,7 +66,7 @@ File should chnage from:
 ```Port 22``` to ```Port 2200```
 
 * Restart the SSH service: `sudo service ssh restart`
-* Now when logging in via ssh attach -p 2200 to the end of the command: `
+* Now when logging in via ssh attach -p 2200 to the end of the command: `ssh -i ~/.ssh/udacity_key.rsa grader@52.11.130.21 -p 2200`
 
 
 ### Configure Firewall (UFW)
@@ -237,4 +237,15 @@ looks like this, except the password and secret is not shown for security reason
 * The catalog app should now be available at `http://52.11.130.21` and
 `http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com`
 
-* If any errors occur navigate to the `/var/log/apache2/` and `sudo nano error.log` to view errors. 
+* If any errors occur navigate to the `/var/log/apache2/` and `sudo nano error.log` to view errors.
+***
+
+# Third Party Resources
+#### Comprehensive list of third party resources that helped with the fustrations and headaches that come along with deploying your first app.  
+***
+
+* [Installing Apache](https://www.digitalocean.com/community/tutorials/apache-basics-installation-and-configuration-troubleshooting) 
+* [Deploying Flask App on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
+* [Setting Up SSH Keys](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604)
+* [Hello Flask with Apache WSGI](http://www.bogotobogo.com/python/Flask/Python_Flask_HelloWorld_App_with_Apache_WSGI_Ubuntu14.php)
+* [Installing Mod WSGI](http://flask.pocoo.org/docs/1.0/deploying/mod_wsgi/)
