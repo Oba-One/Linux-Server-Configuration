@@ -19,7 +19,7 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 
 ### Connect To Server
 
-* Connect to server with SSH with command: `ssh -i "udacity_key.pem" ubuntu@52.11.130.21` 
+* Connect to server with SSH with command: `ssh -i ~/.ssh/udacity_key.rsa ubuntu@52.11.130.21` 
 * Run all commands needed for file permission with **sudo** in order to have admin privileges.
 * Update Timezone with command: `sudo timedatectl set-timezone UTC` 
 
@@ -33,7 +33,7 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 
 When the **grader** uses a sudo command, the following error appears `sudo: unable to resolve host ip-10-20-47-177`
 
-To fix add the hostname to the loopback address edit the hosts file with `sudo /etc/hosts` and 
+To fix add the hostname to the loopback address edit the hosts file with `sudo nano /etc/hosts` and 
 change the first line to reads `127.0.0.1 localhost ip-10-20-47-177`
 
 
@@ -59,11 +59,11 @@ change the first line to reads `127.0.0.1 localhost ip-10-20-47-177`
 
 * Edit the sshd_config to not permit root login, password authentication and change the port to 2200: `sudo nano /etc/ssh/sshd_config`
 
-File should chnage from:
+File should change from:
 
-```PermitRootLogin without-password``` to ```PermitRootLogin no```
-```PasswordAuthentication no``` to ```PasswordAuthentication no```
-```Port 22``` to ```Port 2200```
+* `PermitRootLogin prohibit-password` to `PermitRootLogin no`
+* `PasswordAuthentication no`
+* `Port 22` to `Port 2200`
 
 * Restart the SSH service: `sudo service ssh restart`
 * Now when logging in via ssh attach -p 2200 to the end of the command: `ssh -i ~/.ssh/udacity_key.rsa grader@52.11.130.21 -p 2200`
@@ -82,14 +82,14 @@ File should chnage from:
 
 ***
 # Application Deployment
-#### Apllication deployment using Apache 2, WSGI, Flask, and PostGresSQL.
+#### Application deployment using Apache 2, WSGI, Flask, and PostGresSQL.
 ***
 
 ### Install Apache 
 
 * Install Apache to serve Python application: `sudo apt-get install apache2`
 * Install the `libapache2-mod-wsgi` package: `sudo apt-get install libapache2-mod-wsgi`
-* Now when you visit the IP address you will the default Apache start up page.
+* Now when you visit the IP address or URL you will see the default Apache start up page.
 
 
 ### Install PostgreSQL
@@ -165,6 +165,8 @@ In the Facebook developers website, on the Settings page, the website URL needs 
 in the "Client OAuth Settings" section, add `http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com`
 and `http://52.11.130.21` to the "Valid OAuth redirect URIs" field. Then save these changes.
 
+- Facebook no longer allows http authentication, all domains must have https.
+
 
 ### Configure Apache 2 
 
@@ -175,6 +177,7 @@ Clone the directory: `git clone https://github.com/Oba-One/Linux-Server-Configur
 `cd hi` then  `sudo mv flask-app.conf /etc/apache2/sites-available/
 * Delete the `hi` directory: `sudo rm -r hi`
 * If any files chages need to be made run: `sudo nano flask-app.conf` to edit file.
+
 Here's what the file should contain:
 
 ```python
@@ -245,7 +248,7 @@ looks like this, except the password and secret is not shown for security reason
 ***
 
 * [Installing Apache](https://www.digitalocean.com/community/tutorials/apache-basics-installation-and-configuration-troubleshooting) 
-* [Deploying Flask App on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
+* [Deploying Flask App on Ubuntu]  (https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
 * [Setting Up SSH Keys](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604)
 * [Hello Flask with Apache WSGI](http://www.bogotobogo.com/python/Flask/Python_Flask_HelloWorld_App_with_Apache_WSGI_Ubuntu14.php)
 * [Installing Mod WSGI](http://flask.pocoo.org/docs/1.0/deploying/mod_wsgi/)
