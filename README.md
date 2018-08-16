@@ -11,6 +11,8 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 * URL: http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com/
 * SSH Port: 2200 
 
+
+***
 # Server Setup
 #### Steps for configuration of Amazon Lightsail server using Ubuntu. 
 ***
@@ -31,7 +33,9 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 
 When the **grader** uses a sudo command, the following error appears `sudo: unable to resolve host ip-10-20-47-177`
 
-To fix add the hostname to the loopback address in the ```/etc/hosts``` file so the first line reads `127.0.0.1 localhost ip-10-20-47-177`
+To fix add the hostname to the loopback address edit the hosts file with `sudo /etc/hosts` and 
+change the first line to reads `127.0.0.1 localhost ip-10-20-47-177`
+
 
 ### Update Packages
 
@@ -39,15 +43,17 @@ To fix add the hostname to the loopback address in the ```/etc/hosts``` file so 
 * Run `sudo apt-get upgrade` command to upgrade and install packages.
 * If at login the message **System restart required** is display, run the following command to reboot the machine: `reboot`.
 
+
 ### Setup SSH Keys For Grader
 
 * Make home directory for grader with hidden .ssh file: `sudo mkdir /home/grader/.ssh`
 * Use chown command to change the owner of the home directory to the grader: `sudo chown grader:grader /home/grader/.ssh`
 * Use chmod to change to permisions for the grader in the home directory: `sudo chmod 700 /home/grader/.ssh`
 * Copy over the ssh key from the root directory to home/grader directory: `sudo cp /root/.ssh/authorized_keys /home/grader/.ssh/`
-* Copy over the ssh key from the root directory to home/grader directory: `sudo chown grader:grader /home/grader/.ssh/authorized_keys`
-* Copy over the ssh key from the root directory to home/grader directory: `sudo chmod 644 /home/grader/.ssh/authorized_keys`
+* Change the owner to the grader: `sudo chown grader:grader /home/grader/.ssh/authorized_keys`
+* With the chmod command change permissions to grader : `sudo chmod 644 /home/grader/.ssh/authorized_keys`
 * The grader can now login using via ssh with command: 
+
 
 ### Change SSH Port
 
@@ -60,7 +66,7 @@ File should chnage from:
 ```Port 22``` to ```Port 2200```
 
 * Restart the SSH service: `sudo service ssh restart`
-* Now when logging in via ssh attach -p 2200 to the end of the command `
+* Now when logging in via ssh attach -p 2200 to the end of the command: `
 
 
 ### Configure Firewall (UFW)
@@ -73,9 +79,10 @@ File should chnage from:
 * Check the firewall rule: `sudo ufw show added`
 * Enable the firewall and check status: `sudo ufw enable` then `sudo ufw status`
 
+
 ***
 # Application Deployment
-#### Apllication deployment using Apache 2, Flask, and PostGresSQL.
+#### Apllication deployment using Apache 2, WSGI, Flask, and PostGresSQL.
 ***
 
 ### Install Apache 
@@ -83,6 +90,7 @@ File should chnage from:
 * Install Apache to serve Python application: `sudo apt-get install apache2`
 * Install the `libapache2-mod-wsgi` package: `sudo apt-get install libapache2-mod-wsgi`
 * Now when you visit the IP address you will the default Apache start up page.
+
 
 ### Install PostgreSQL
 
@@ -100,6 +108,7 @@ and `::1` for IPv6.
 - When prompted for a password use the name password.
 
 * Create an empty database called catalog: `sudo -u postgres createuser -P catalog`
+
 
 ### Install Flask, SQLAlchemy, & Etc
 
@@ -119,6 +128,7 @@ sudo pip install bleach
 
 An alternative to installing system-wide python modules is to create a virtual
 environment for each application using the [virualenv][4] package.
+
 
 ### Add Application  From Github
 
@@ -154,6 +164,7 @@ In the Facebook developers website, on the Settings page, the website URL needs 
 `http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com`. Then in the "Advanced" tab,
 in the "Client OAuth Settings" section, add `http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com`
 and `http://52.11.130.21` to the "Valid OAuth redirect URIs" field. Then save these changes.
+
 
 ### Configure Apache 2 
 
@@ -227,8 +238,3 @@ looks like this, except the password and secret is not shown for security reason
 `http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com`
 
 * If any errors occur navigate to the `/var/log/apache2/` and `sudo nano error.log` to view errors. 
-
-[This][6] was a useful guide to setting up a Flask app on Apache, though the `Directory`
-permissions in the virtual host file were out of date (now it's `Require all granted`
-to allow all clients to access the server).
-
