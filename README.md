@@ -18,9 +18,10 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 
 #### Steps for configuration of Amazon Lightsail server using Ubuntu
 
+***
 ## Connect To Server
 
-1. Connect to server using SSH
+* Connect to server using SSH `ssh -i "udacity_key.pem" ubuntu@52.11.130.21` 
 2. Use Udacity Key pem 
 3. Change the timezone
 
