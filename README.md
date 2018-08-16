@@ -13,11 +13,10 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 * URL: http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com/
 * SSH Port: 2200 
 
-# Server Configuration
-
-#### Steps for configuration of Amazon Lightsail server using Ubuntu. Along with application deployment with Apache, Flask, & PostGresSQL
-
+# Server Setup
+#### Steps for configuration of Amazon Lightsail server using Ubuntu. 
 ***
+
 ### Connect To Server
 
 * Connect to server with SSH with command: `ssh -i "udacity_key.pem" ubuntu@52.11.130.21` 
@@ -38,7 +37,7 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 ### Update Packages
 
 * Run `sudo apt-get update` command to update package indexes.
-* Run `sudo apt-get upgrader` command to upgrade and install packages.
+* Run `sudo apt-get upgrade` command to upgrade and install packages.
 * If at login the message **System restart required** is display, run the following command to reboot the machine: `reboot`.
 
 ### Setup SSH Keys For Grader
@@ -74,6 +73,11 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 * Allow NTP connection on port 123: `sudo ufw allow ntp`
 * Check the firewall rule: `sudo ufw show added`
 * Enable the firewall and check status: `sudo ufw enable` then `sudo ufw status`
+
+***
+# Application Deployment
+#### Apllication deployment using Apache 2, Flask, and PostGresSQL.
+***
 
 ### Install Apache 
 
