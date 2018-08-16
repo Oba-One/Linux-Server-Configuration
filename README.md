@@ -248,7 +248,7 @@ looks like this, except the password and secret is not shown for security reason
 ***
 
 * [Installing Apache](https://www.digitalocean.com/community/tutorials/apache-basics-installation-and-configuration-troubleshooting) 
-* [Deploying Flask App on Ubuntu]  (https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
+* [Deploying Flask App on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
 * [Setting Up SSH Keys](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604)
 * [Hello Flask with Apache WSGI](http://www.bogotobogo.com/python/Flask/Python_Flask_HelloWorld_App_with_Apache_WSGI_Ubuntu14.php)
 * [Installing Mod WSGI](http://flask.pocoo.org/docs/1.0/deploying/mod_wsgi/)
