@@ -8,9 +8,9 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 
 ## Server Details
 
-* IP Address:
-* SSH Port: 2200
-* URL: 
+* IP Address: 52.11.130.21 
+* URL: http://ec2-52-11-130-21.us-west-2.compute.amazonaws.com/
+* SSH Port: 2200 
 
 ## Server Configuration
 
@@ -22,16 +22,18 @@ The project requires students to create a Linux Server using Amazon Lightsail. I
 
 ### Add User Grader
 1. Add user **grader** with command:
-```
+
 sudo useradd -m -s /bin/bash grader
 ```
 
 2. Set Password for the user with command:
+
 ```
 sudo passwd grader
 ```
 
 3. Give Sudo Permissions to Grader 
+
 ```
 sudo usermod -aG sudo grader
 ```
@@ -39,7 +41,9 @@ sudo usermod -aG sudo grader
 4. Fix sudo resolve host error"
 When the **grader** uses a sudo command, the following error appears ```sudo: unable to resolve host ip-10-20-47-177```
 
-To fix add the hostname to the loopback address in the ```/etc/hosts``` file so the first line reads ```127.0.0.1 localhost ip-10-20-47-177```
+To fix add the hostname to the loopback address in the ```/etc/hosts``` file so the first line reads 
+
+```127.0.0.1 localhost ip-10-20-47-177```
 
 ### Update Packages
 1. Run ```sudo apt-get update``` command to update package indexes
@@ -51,6 +55,7 @@ To fix add the hostname to the loopback address in the ```/etc/hosts``` file so 
 
 ### Setup SSH Keys For Grader
 1. Make home directory for grader with hidden .ssh file 
+
 ```
 mkdir /home/grader/.ssh
 ```
@@ -58,24 +63,29 @@ mkdir /home/grader/.ssh
 2. Use chown command to change the owner of the home directory to the grader.
 ```
 chown grader:grader /home/grader/.ssh
+
 ```
 
 3. Use chmod to change to permisions for the grader in the home directory.
+
 ```
 chmod 700 /home/grader/.ssh
 ```
 
 4. Copy over the ssh key from the root directory to home/grader directory 
+
 ```
 cp /root/.ssh/authorized_keys /home/grader/.ssh/
 ```
 
 5. Copy over the ssh key from the root directory to home/grader directory 
+
 ```
 chown grader:grader /home/grader/.ssh/authorized_keys
 ```
 
 5. Copy over the ssh key from the root directory to home/grader directory 
+
 ```
 chmod 644 /home/grader/.ssh/authorized_keys
 ```
@@ -84,54 +94,68 @@ chmod 644 /home/grader/.ssh/authorized_keys
 
 ### Change SSH port
 1. Edit the sshd_config to not permit root login, password authentication and change the port to 2200.
+
 ```
 sudon nano /etc/ssh/sshd_config
 ```
 File should chnage from:
+
 ```PermitRootLogin without-password``` to ```PermitRootLogin no```
 ```PasswordAuthentication no```
 ```Port 22``` to ```Port 2200```
 
 3. Restart the SSH service
+
 ```
 sudo service ssh restart
 ```
 4. Now when logging in via ssh attach -p 2200 to the end
+
 ```
 ```
 
 
 ### Configure Firewall (UFW)
 1. Block all incoming connections
+
 ```sudo ufw default deny incoming```
 
 2. Allow outgoing connections
+
 ```sudo ufw default allow outgoing```
 
 3. Allow SSH on port 2200
+
 ```sudo ufw allow 2200/tcp```
 
 4. Allow HTTP connection on port 80
+
 ```sudo ufw allow www```
 
 5. Allow NTP connection on port 123
+
 ```sudo ufw allow ntp```
 
 6. Check the firewall rule
+
 ```sudo ufw show added```
 
 7. Enable the firewall and check status
+
 ```sudo ufw enable ``` then ```sudo ufw status``
 
 ### Install Apache 
 1. Install Apache to serve Python application
+
 ```sudo apt-get install apache2```
 
 2. Install the ```libapache2-mod-wsgi``` package
+
 ```sudo apt-get install libapache2-mod-wsgi```
 
 ### Install PostgreSQL
 1. Install postgresSQL with command:
+
 `sudo apt-get install postgresql postgresql-contrib`
 
 To ensure that remote connections to PostgreSQL are not allowed, I checked
