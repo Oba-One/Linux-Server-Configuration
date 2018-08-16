@@ -1,7 +1,5 @@
 # Linux-Server-Configuration
-
 #### The fifth project in Udacity's full stack web development nanodegree program.
-
 ***
 ## Project Overview
 
