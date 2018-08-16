@@ -1,6 +1,7 @@
 # Linux-Server-Configuration
 The fifth project in Udacity's full stack web development nanodegree program.
----
+
+***
 ## Project Overview
 
 The project requires students to create a Linux Server using Amazon Lightsail. It requires hosting one of the previous completed projects with an SSH key to access the projects.  
